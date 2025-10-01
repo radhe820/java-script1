@@ -1,49 +1,46 @@
-// singleton            /*used in constructors and in this objects cannot be repeated*/
-// object.create       /*used in singleton*/
+// Singleton Pattern concept mentioned (used in constructors to ensure single instance)
+// Object.create is often used to create objects with prototypes (related to singleton)
 
-//    objects literals         /*by the hel of curly braces we can define our object {}*/
+// Object literals - create objects using curly braces {}
 
+const mysym = Symbol("key1");  // Declare a unique Symbol, useful as object key
 
-const mysym = Symbol("key1")   /*declare a symbol*/
-
-const JsUser = {           
-
-name: "radhe" ,
-"full name": "radhe shyam",
-[mysym]: "mykey1",           /*declare a symbol*/
-age: 20,
-location: "jaipur" ,
-email: "radhe@google.com" ,
-isLoggedIn: false ,
-lastLoginDays: ["monday","saturday"]
-
+const JsUser = {
+    name: "radhe",             // String property
+    "full name": "radhe shyam", // Property name with space, accessed via bracket notation
+    [mysym]: "mykey1",          // Symbol property key, cannot be accessed by normal strings
+    age: 20,
+    location: "jaipur",
+    email: "radhe@google.com",
+    isLoggedIn: false,
+    lastLoginDays: ["monday", "saturday"]  // Array as a property value
 }
 
-console.log(JsUser.email)
-console.log(JsUser["email"])
-console.log(JsUser["full name"])
-console.log(JsUser[mysym]);
-console.log(typeof JsUser[mysym]);
+// Accessing properties
+console.log(JsUser.email);          // Dot notation, prints email
+console.log(JsUser["email"]);       // Bracket notation, same as above
+console.log(JsUser["full name"]);   // Bracket notation for keys with spaces
+console.log(JsUser[mysym]);         // Access symbol-keyed property
+console.log(typeof JsUser[mysym]);  // Check the type of symbol-keyed value ("string")
 
+// Modifying properties
+JsUser.email = "radheshyam@chatgpt.com";  // Update email property
 
-JsUser.email = "radheshyam@chatgpt.com"
-// Object.freeze(JsUser)
-JsUser.email = "radhe@microsoft.com"
-console.log(JsUser);
+// Object.freeze(JsUser);  // Uncommenting this would make the object immutable (no changes allowed)
 
-/* functions */
+JsUser.email = "radhe@microsoft.com";  // Can still update because freeze is commented out
+console.log(JsUser);                   // Show updated object
 
-JsUser.greeting = function(){
-    console.log(("hello Js User"));
-    }
+// Adding methods (functions) to the object
 
-JsUser.greetingTwo = function(){
-    console.log(`hello Js User, ${this.name}`);
-    
-}    
+JsUser.greeting = function() {
+    console.log("hello Js User");  // Simple method logs a message
+}
 
-console.log(JsUser.greeting());
-console.log(JsUser.greetingTwo());
+JsUser.greetingTwo = function() {
+    console.log(`hello Js User, ${this.name}`);  
+    // 'this' refers to JsUser object, accesses the name property dynamically
+}
 
-
-
+console.log(JsUser.greeting());     // Calls greeting method, logs message and prints undefined (no return)
+console.log(JsUser.greetingTwo());  // Calls greetingTwo, logs message with name and prints undefined

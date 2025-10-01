@@ -1,72 +1,70 @@
-// primitive
+// Primitive data types in JavaScript
+// There are 7 primitive types: string, number, boolean, null, undefined, symbol, bigint
 
-// 7 types: string, number , boolean , null , undefined , symbol , bigInt
+const score = 100;           // Number primitive (integer)
+const scoreValue = 100.3;    // Number primitive (floating point)
+const isLoggedIn = false;    // Boolean primitive
+let userEmail;               // undefined by default (no value assigned)
 
+const id = Symbol('123');    // Symbol primitive - unique identifier
+const anotherId = Symbol('123');
 
-const score = 100
-const scoreValue = 100.3
-const isLoggedIn = false
-let userEmail;
-
-const id = Symbol('123')
-const anotherId = Symbol('123')
-
-console.log(id === anotherId);
-
-const bigNumber = 6987659876548916879n
+console.log(id === anotherId);  
+// false because every Symbol is unique even if the description is the same
 
 
-// reference (non premitive)
-
-//  array , objects , functions
+const bigNumber = 6987659876548916879n;  // BigInt primitive for very large integers
 
 
-const heros = ["shaktimaan" , "naagraj" , "doga"];
+// Reference (non-primitive) data types:
+// Objects, arrays, functions - stored in heap memory
+
+const heros = ["shaktimaan", "naagraj", "doga"];  // Array (reference type)
 
 let myObj = {
     age: 22,
-}
+};  // Object literal
 
 const myFunction = function(){
     console.log("Hello World");
-}
-
-console.log(typeof bigNumber);
-console.log(typeof scoreValue);
-console.log(typeof myFunction);
-console.log(typeof heros);
-console.log(typeof anotherId);
+};  // Function expression (also an object under the hood)
 
 
+// typeof operator shows the data type
+console.log(typeof bigNumber);    // 'bigint'
+console.log(typeof scoreValue);   // 'number'
+console.log(typeof myFunction);   // 'function'
+console.log(typeof heros);        // 'object' (arrays are objects)
+console.log(typeof anotherId);    // 'symbol'
 
 
 /*''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''*/
 
-// stack and heap 
+// Stack and Heap memory in JavaScript
 
-// stack == premitive
-// heap == non premitive
+// Primitive values are stored in stack (fixed size, simple data)
+// Reference types are stored in heap (complex data structures)
+
+// Example of primitive assignment (copied by value)
+
+let myName = "radhe";
+let anothername = myName;  // anothername gets a copy of the value "radhe"
+
+anothername = "shyam";     // modifying anothername does NOT affect myName
+
+console.log(myName);       // "radhe"
+console.log(anothername);  // "shyam"
 
 
-let myName = "radhe"
-
-let anothername = myName
-anothername = "shyam"
-
-console.log(myName);
-console.log(anothername);
-
+// Example of reference assignment (copied by reference)
 
 let userOne = {
     email: "user@gmail.com"
- 
-}
+};
 
-let userTwo = userOne
+let userTwo = userOne;     // userTwo references the same object in heap
 
-userTwo.email = "radhe@google.com"
+userTwo.email = "radhe@google.com";  // modifying userTwo modifies the same object
 
-console.log(userOne.email);
-console.log(userTwo.email);
-
-
+console.log(userOne.email);   // "radhe@google.com" (affected)
+console.log(userTwo.email);   // "radhe@google.com"
